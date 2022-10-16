@@ -9,7 +9,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
 
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition   Width="*"/>
             <ColumnDefinition   Width="*"/>
 
         </Grid.ColumnDefinitions>
@@ -34,6 +34,7 @@
                    FontSize="18" Grid.Row="3" Grid.Column="0"/>
         <TextBlock Text="Pizzasoße" VerticalAlignment="Center" HorizontalAlignment="Center" 
                    FontSize="18" Grid.Row="4" Grid.Column="0"/>
+        
 
     </Grid>
 </Window>
