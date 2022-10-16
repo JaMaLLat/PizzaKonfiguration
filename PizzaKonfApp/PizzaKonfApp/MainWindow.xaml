@@ -24,6 +24,16 @@
 
         </Grid.RowDefinitions>
 
+        <TextBlock Text="Pizza Große" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="18" Grid.Row="0" Grid.Column="0"/>
+        <TextBlock Text="Vegetarische Zutaten" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="18" Grid.Row="1" Grid.Column="0"/>
+        <TextBlock Text="Fleisch Zutaten " VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="18" Grid.Row="2" Grid.Column="0"/>
+        <TextBlock Text="Fisch Zutaten " VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="18" Grid.Row="3" Grid.Column="0"/>
+        <TextBlock Text="Pizzasoße" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="18" Grid.Row="4" Grid.Column="0"/>
 
     </Grid>
 </Window>
