@@ -9,13 +9,20 @@
     <Grid>
         <Grid.ColumnDefinitions>
 
-            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition   Width="*"/>
 
         </Grid.ColumnDefinitions>
-        <Grid.ColumnDefinitions> 
-            <ColumnDefinition   Width="*"
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+
+        </Grid.RowDefinitions>
 
 
     </Grid>
