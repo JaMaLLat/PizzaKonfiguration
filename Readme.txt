@@ -1,0 +1,1 @@
+Das Programm ermöglicht es eine Pizza nach eigenen Wünschen zusammenzustellen und berechnet einen Preis.
