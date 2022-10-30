@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0af3ce08b20c444a91eaacdd4ececf98" Name="Diagram1">
+        <EntityTypeShape EntityType="DbPizzaconfModel.Fisch" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbPizzaconfModel.Fleisch" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbPizzaconfModel.Pizza" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbPizzaconfModel.Pizzasoße" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbPizzaconfModel.Rechnung" Width="1.5" PointX="1.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbPizzaconfModel.Teig" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbPizzaconfModel.Vegetarische" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbPizzaconfModel.Zutaten" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbPizzaconfModel.ZutatenArt" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="DbPizzaconfModel.FK__Fisch__ZutatenAr__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="DbPizzaconfModel.FK__Fleisch__Zutaten__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="DbPizzaconfModel.FK__Pizza__RechnungI__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DbPizzaconfModel.FK__Zutaten__PizzaID__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="DbPizzaconfModel.FK__Pizzasoße__Zutat__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="DbPizzaconfModel.FK__Teig__ZutatenArt__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="DbPizzaconfModel.FK__Vegetaris__Zutat__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="DbPizzaconfModel.FK__Zutaten__Zutaten__5535A963" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DbPizzaconfModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Fisch">
+          <Key>
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="Sort" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZutatenArtID" Type="int" />
+          <Property Name="Preis" Type="money" />
+        </EntityType>
+        <EntityType Name="Fleisch">
+          <Key>
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="Sort" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZutatenArtID" Type="int" />
+          <Property Name="Preis" Type="money" />
+        </EntityType>
+        <EntityType Name="Pizza">
+          <Key>
+            <PropertyRef Name="PizzaID" />
+          </Key>
+          <Property Name="PizzaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RechnungID" Type="int" />
+          <Property Name="Große" Type="float" Nullable="false" />
+          <Property Name="Beschreibung" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="MENGE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pizzasoße">
+          <Key>
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="Sort" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZutatenArtID" Type="int" />
+          <Property Name="Preis" Type="money" />
+        </EntityType>
+        <EntityType Name="Rechnung">
+          <Key>
+            <PropertyRef Name="RechnungID" />
+          </Key>
+          <Property Name="RechnungID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Preis" Type="money" />
+        </EntityType>
+        <EntityType Name="Teig">
+          <Key>
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="Sort" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZutatenArtID" Type="int" />
+          <Property Name="Preis" Type="money" />
+        </EntityType>
+        <EntityType Name="Vegetarische">
+          <Key>
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="Sort" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZutatenArtID" Type="int" />
+          <Property Name="Preis" Type="money" />
+        </EntityType>
+        <EntityType Name="Zutaten">
+          <Key>
+            <PropertyRef Name="ZutatenID" />
+          </Key>
+          <Property Name="ZutatenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PizzaID" Type="int" />
+          <Property Name="ZutatenArtID" Type="int" />
+          <Property Name="Sort" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Menge" Type="int" />
+          <Property Name="Preis" Type="money" />
+        </EntityType>
+        <EntityType Name="ZutatenArt">
+          <Key>
+            <PropertyRef Name="ZutatenArtID" />
+          </Key>
+          <Property Name="ZutatenArtID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ART" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Fisch__ZutatenAr__656C112C">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Fisch" Type="Self.Fisch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Fisch">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Fleisch__Zutaten__5FB337D6">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Fleisch" Type="Self.Fleisch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Fleisch">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pizza__RechnungI__3C69FB99">
+          <End Role="Rechnung" Type="Self.Rechnung" Multiplicity="0..1" />
+          <End Role="Pizza" Type="Self.Pizza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rechnung">
+              <PropertyRef Name="RechnungID" />
+            </Principal>
+            <Dependent Role="Pizza">
+              <PropertyRef Name="RechnungID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pizzasoße__Zutat__5CD6CB2B">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Pizzasoße" Type="Self.Pizzasoße" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Pizzasoße">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teig__ZutatenArt__59FA5E80">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Teig" Type="Self.Teig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Teig">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vegetaris__Zutat__628FA481">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Vegetarische" Type="Self.Vegetarische" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Vegetarische">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zutaten__PizzaID__5441852A">
+          <End Role="Pizza" Type="Self.Pizza" Multiplicity="0..1" />
+          <End Role="Zutaten" Type="Self.Zutaten" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pizza">
+              <PropertyRef Name="PizzaID" />
+            </Principal>
+            <Dependent Role="Zutaten">
+              <PropertyRef Name="PizzaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zutaten__Zutaten__5535A963">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Zutaten" Type="Self.Zutaten" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Zutaten">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbPizzaconfModelStoreContainer">
+          <EntitySet Name="Fisch" EntityType="Self.Fisch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fleisch" EntityType="Self.Fleisch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pizza" EntityType="Self.Pizza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pizzasoße" EntityType="Self.Pizzasoße" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rechnung" EntityType="Self.Rechnung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teig" EntityType="Self.Teig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vegetarische" EntityType="Self.Vegetarische" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zutaten" EntityType="Self.Zutaten" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZutatenArt" EntityType="Self.ZutatenArt" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Fisch__ZutatenAr__656C112C" Association="Self.FK__Fisch__ZutatenAr__656C112C">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Fisch" EntitySet="Fisch" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Fleisch__Zutaten__5FB337D6" Association="Self.FK__Fleisch__Zutaten__5FB337D6">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Fleisch" EntitySet="Fleisch" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pizza__RechnungI__3C69FB99" Association="Self.FK__Pizza__RechnungI__3C69FB99">
+            <End Role="Rechnung" EntitySet="Rechnung" />
+            <End Role="Pizza" EntitySet="Pizza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pizzasoße__Zutat__5CD6CB2B" Association="Self.FK__Pizzasoße__Zutat__5CD6CB2B">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Pizzasoße" EntitySet="Pizzasoße" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teig__ZutatenArt__59FA5E80" Association="Self.FK__Teig__ZutatenArt__59FA5E80">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Teig" EntitySet="Teig" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vegetaris__Zutat__628FA481" Association="Self.FK__Vegetaris__Zutat__628FA481">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Vegetarische" EntitySet="Vegetarische" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zutaten__PizzaID__5441852A" Association="Self.FK__Zutaten__PizzaID__5441852A">
+            <End Role="Pizza" EntitySet="Pizza" />
+            <End Role="Zutaten" EntitySet="Zutaten" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zutaten__Zutaten__5535A963" Association="Self.FK__Zutaten__Zutaten__5535A963">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Zutaten" EntitySet="Zutaten" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbPizzaconfModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Fisch">
+          <Key>
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="Sort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZutatenArtID" Type="Int32" />
+          <Property Name="Preis" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="ZutatenArt" Relationship="Self.FK__Fisch__ZutatenAr__656C112C" FromRole="Fisch" ToRole="ZutatenArt" />
+        </EntityType>
+        <EntityType Name="Fleisch">
+          <Key>
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="Sort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZutatenArtID" Type="Int32" />
+          <Property Name="Preis" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="ZutatenArt" Relationship="Self.FK__Fleisch__Zutaten__5FB337D6" FromRole="Fleisch" ToRole="ZutatenArt" />
+        </EntityType>
+        <EntityType Name="Pizza">
+          <Key>
+            <PropertyRef Name="PizzaID" />
+          </Key>
+          <Property Name="PizzaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RechnungID" Type="Int32" />
+          <Property Name="Große" Type="Double" Nullable="false" />
+          <Property Name="Beschreibung" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MENGE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rechnung" Relationship="Self.FK__Pizza__RechnungI__3C69FB99" FromRole="Pizza" ToRole="Rechnung" />
+          <NavigationProperty Name="Zutaten" Relationship="Self.FK__Zutaten__PizzaID__5441852A" FromRole="Pizza" ToRole="Zutaten" />
+        </EntityType>
+        <EntityType Name="Pizzasoße">
+          <Key>
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="Sort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZutatenArtID" Type="Int32" />
+          <Property Name="Preis" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="ZutatenArt" Relationship="Self.FK__Pizzasoße__Zutat__5CD6CB2B" FromRole="Pizzasoße" ToRole="ZutatenArt" />
+        </EntityType>
+        <EntityType Name="Rechnung">
+          <Key>
+            <PropertyRef Name="RechnungID" />
+          </Key>
+          <Property Name="RechnungID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Preis" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Pizza" Relationship="Self.FK__Pizza__RechnungI__3C69FB99" FromRole="Rechnung" ToRole="Pizza" />
+        </EntityType>
+        <EntityType Name="Teig">
+          <Key>
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="Sort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZutatenArtID" Type="Int32" />
+          <Property Name="Preis" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="ZutatenArt" Relationship="Self.FK__Teig__ZutatenArt__59FA5E80" FromRole="Teig" ToRole="ZutatenArt" />
+        </EntityType>
+        <EntityType Name="Vegetarische">
+          <Key>
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="Sort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZutatenArtID" Type="Int32" />
+          <Property Name="Preis" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="ZutatenArt" Relationship="Self.FK__Vegetaris__Zutat__628FA481" FromRole="Vegetarische" ToRole="ZutatenArt" />
+        </EntityType>
+        <EntityType Name="Zutaten">
+          <Key>
+            <PropertyRef Name="ZutatenID" />
+          </Key>
+          <Property Name="ZutatenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PizzaID" Type="Int32" />
+          <Property Name="ZutatenArtID" Type="Int32" />
+          <Property Name="Sort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Menge" Type="Int32" />
+          <Property Name="Preis" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Pizza" Relationship="Self.FK__Zutaten__PizzaID__5441852A" FromRole="Zutaten" ToRole="Pizza" />
+          <NavigationProperty Name="ZutatenArt" Relationship="Self.FK__Zutaten__Zutaten__5535A963" FromRole="Zutaten" ToRole="ZutatenArt" />
+        </EntityType>
+        <EntityType Name="ZutatenArt">
+          <Key>
+            <PropertyRef Name="ZutatenArtID" />
+          </Key>
+          <Property Name="ZutatenArtID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ART" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Fisch" Relationship="Self.FK__Fisch__ZutatenAr__656C112C" FromRole="ZutatenArt" ToRole="Fisch" />
+          <NavigationProperty Name="Fleisch" Relationship="Self.FK__Fleisch__Zutaten__5FB337D6" FromRole="ZutatenArt" ToRole="Fleisch" />
+          <NavigationProperty Name="Pizzasoße" Relationship="Self.FK__Pizzasoße__Zutat__5CD6CB2B" FromRole="ZutatenArt" ToRole="Pizzasoße" />
+          <NavigationProperty Name="Teig" Relationship="Self.FK__Teig__ZutatenArt__59FA5E80" FromRole="ZutatenArt" ToRole="Teig" />
+          <NavigationProperty Name="Vegetarische" Relationship="Self.FK__Vegetaris__Zutat__628FA481" FromRole="ZutatenArt" ToRole="Vegetarische" />
+          <NavigationProperty Name="Zutaten" Relationship="Self.FK__Zutaten__Zutaten__5535A963" FromRole="ZutatenArt" ToRole="Zutaten" />
+        </EntityType>
+        <Association Name="FK__Fisch__ZutatenAr__656C112C">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Fisch" Type="Self.Fisch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Fisch">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Fleisch__Zutaten__5FB337D6">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Fleisch" Type="Self.Fleisch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Fleisch">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pizza__RechnungI__3C69FB99">
+          <End Role="Rechnung" Type="Self.Rechnung" Multiplicity="0..1" />
+          <End Role="Pizza" Type="Self.Pizza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rechnung">
+              <PropertyRef Name="RechnungID" />
+            </Principal>
+            <Dependent Role="Pizza">
+              <PropertyRef Name="RechnungID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zutaten__PizzaID__5441852A">
+          <End Role="Pizza" Type="Self.Pizza" Multiplicity="0..1" />
+          <End Role="Zutaten" Type="Self.Zutaten" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pizza">
+              <PropertyRef Name="PizzaID" />
+            </Principal>
+            <Dependent Role="Zutaten">
+              <PropertyRef Name="PizzaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pizzasoße__Zutat__5CD6CB2B">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Pizzasoße" Type="Self.Pizzasoße" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Pizzasoße">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teig__ZutatenArt__59FA5E80">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Teig" Type="Self.Teig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Teig">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vegetaris__Zutat__628FA481">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Vegetarische" Type="Self.Vegetarische" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Vegetarische">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zutaten__Zutaten__5535A963">
+          <End Role="ZutatenArt" Type="Self.ZutatenArt" Multiplicity="0..1" />
+          <End Role="Zutaten" Type="Self.Zutaten" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZutatenArt">
+              <PropertyRef Name="ZutatenArtID" />
+            </Principal>
+            <Dependent Role="Zutaten">
+              <PropertyRef Name="ZutatenArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fisch" EntityType="Self.Fisch" />
+          <EntitySet Name="Fleisch" EntityType="Self.Fleisch" />
+          <EntitySet Name="Pizza" EntityType="Self.Pizza" />
+          <EntitySet Name="Pizzasoße" EntityType="Self.Pizzasoße" />
+          <EntitySet Name="Rechnung" EntityType="Self.Rechnung" />
+          <EntitySet Name="Teig" EntityType="Self.Teig" />
+          <EntitySet Name="Vegetarische" EntityType="Self.Vegetarische" />
+          <EntitySet Name="Zutaten" EntityType="Self.Zutaten" />
+          <EntitySet Name="ZutatenArt" EntityType="Self.ZutatenArt" />
+          <AssociationSet Name="FK__Fisch__ZutatenAr__656C112C" Association="Self.FK__Fisch__ZutatenAr__656C112C">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Fisch" EntitySet="Fisch" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Fleisch__Zutaten__5FB337D6" Association="Self.FK__Fleisch__Zutaten__5FB337D6">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Fleisch" EntitySet="Fleisch" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pizza__RechnungI__3C69FB99" Association="Self.FK__Pizza__RechnungI__3C69FB99">
+            <End Role="Rechnung" EntitySet="Rechnung" />
+            <End Role="Pizza" EntitySet="Pizza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zutaten__PizzaID__5441852A" Association="Self.FK__Zutaten__PizzaID__5441852A">
+            <End Role="Pizza" EntitySet="Pizza" />
+            <End Role="Zutaten" EntitySet="Zutaten" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pizzasoße__Zutat__5CD6CB2B" Association="Self.FK__Pizzasoße__Zutat__5CD6CB2B">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Pizzasoße" EntitySet="Pizzasoße" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teig__ZutatenArt__59FA5E80" Association="Self.FK__Teig__ZutatenArt__59FA5E80">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Teig" EntitySet="Teig" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vegetaris__Zutat__628FA481" Association="Self.FK__Vegetaris__Zutat__628FA481">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Vegetarische" EntitySet="Vegetarische" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zutaten__Zutaten__5535A963" Association="Self.FK__Zutaten__Zutaten__5535A963">
+            <End Role="ZutatenArt" EntitySet="ZutatenArt" />
+            <End Role="Zutaten" EntitySet="Zutaten" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbPizzaconfModelStoreContainer" CdmEntityContainer="DbEntities">
+          <EntitySetMapping Name="Fisch">
+            <EntityTypeMapping TypeName="DbPizzaconfModel.Fisch">
+              <MappingFragment StoreEntitySet="Fisch">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ZutatenArtID" ColumnName="ZutatenArtID" />
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fleisch">
+            <EntityTypeMapping TypeName="DbPizzaconfModel.Fleisch">
+              <MappingFragment StoreEntitySet="Fleisch">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ZutatenArtID" ColumnName="ZutatenArtID" />
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pizza">
+            <EntityTypeMapping TypeName="DbPizzaconfModel.Pizza">
+              <MappingFragment StoreEntitySet="Pizza">
+                <ScalarProperty Name="PizzaID" ColumnName="PizzaID" />
+                <ScalarProperty Name="RechnungID" ColumnName="RechnungID" />
+                <ScalarProperty Name="Große" ColumnName="Große" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="MENGE" ColumnName="MENGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pizzasoße">
+            <EntityTypeMapping TypeName="DbPizzaconfModel.Pizzasoße">
+              <MappingFragment StoreEntitySet="Pizzasoße">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ZutatenArtID" ColumnName="ZutatenArtID" />
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rechnung">
+            <EntityTypeMapping TypeName="DbPizzaconfModel.Rechnung">
+              <MappingFragment StoreEntitySet="Rechnung">
+                <ScalarProperty Name="RechnungID" ColumnName="RechnungID" />
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teig">
+            <EntityTypeMapping TypeName="DbPizzaconfModel.Teig">
+              <MappingFragment StoreEntitySet="Teig">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ZutatenArtID" ColumnName="ZutatenArtID" />
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vegetarische">
+            <EntityTypeMapping TypeName="DbPizzaconfModel.Vegetarische">
+              <MappingFragment StoreEntitySet="Vegetarische">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ZutatenArtID" ColumnName="ZutatenArtID" />
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zutaten">
+            <EntityTypeMapping TypeName="DbPizzaconfModel.Zutaten">
+              <MappingFragment StoreEntitySet="Zutaten">
+                <ScalarProperty Name="ZutatenID" ColumnName="ZutatenID" />
+                <ScalarProperty Name="PizzaID" ColumnName="PizzaID" />
+                <ScalarProperty Name="ZutatenArtID" ColumnName="ZutatenArtID" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Menge" ColumnName="Menge" />
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZutatenArt">
+            <EntityTypeMapping TypeName="DbPizzaconfModel.ZutatenArt">
+              <MappingFragment StoreEntitySet="ZutatenArt">
+                <ScalarProperty Name="ZutatenArtID" ColumnName="ZutatenArtID" />
+                <ScalarProperty Name="ART" ColumnName="ART" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
