@@ -14,13 +14,14 @@ CREATE TABLE Pizza
 (
 PizzaID INT NOT NULL IDENTITY(1,1) ,
 RechnungID INT ,
+ZutatenID INT ,
 Groﬂe FLOAT NOT NULL ,
 Beschreibung VARCHAR(2000) NOT NULL ,
 MENGE INT NOT NULL ,
 PRIMARY KEY (PizzaID),
-FOREIGN KEY (RechnungID) REFERENCES Rechnung(RechnungID)
-
+FOREIGN KEY (RechnungID) REFERENCES Rechnung(RechnungID),
 )
+
 GO
 IF OBJECT_ID('Zutaten') IS NOT NULL
 DROP TABLE Zutaten 
@@ -39,6 +40,17 @@ CREATE TABLE Zutaten
 GO
 
 
+IF OBJECT_ID('Pizza_Zutaten') IS NOT NULL
+DROP TABLE Pizza_Zutaten 
+CREATE TABLE Pizza_Zutaten
+(
+ ZutatenID INT NOT NULL ,
+ PizzaID INT NOT NULL ,
+ FOREIGN KEY (ZutatenID) REFERENCES Zutaten(ZutatenID),
+ FOREIGN KEY (PizzaID) REFERENCES Pizza(PizzaID)
+)
+GO
+
 IF OBJECT_ID('ZutatenArt') IS NOT NULL
 DROP TABLE ZutatenArt 
 CREATE TABLE ZutatenArt
@@ -48,6 +60,8 @@ CREATE TABLE ZutatenArt
  PRIMARY KEY (ZutatenArtID),
 )
 GO
+
+
 
 
 IF OBJECT_ID('Rechnung') IS NOT NULL
@@ -153,6 +167,7 @@ INSERT INTO Fisch (Sort, Preis) VALUES
 ('Thunfisch', 0.40) ,
 ('Sardellen', 0.20) 
 GO
-select * from Pizza
+
+select * from Pizza_Zutaten
 
 
