@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbPizzaconfModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'DbPizzaconf.dbo.Pizza_Zutaten' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+  <EntityType Name="Pizza_Zutaten">
+    <Key>
+      <PropertyRef Name="ZutatenID" />
+      <PropertyRef Name="PizzaID" />
+    </Key>
+    <Property Name="ZutatenID" Type="int" Nullable="false" />
+    <Property Name="PizzaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pizzasoße">
+    <Key>
+      <PropertyRef Name="Sort" />
+    </Key>
+    <Property Name="Sort" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ZutatenID" Type="int" />
+    <Property Name="Preis" Type="money" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityContainer Name="DbPizzaconfModelStoreContainer">
+    <EntitySet Name="Pizzasoße" EntityType="Self.Pizzasoße" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pizza_Zutaten" EntityType="Self.Pizza_Zutaten" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Pizza_Zutaten].[ZutatenID] AS [ZutatenID], 
+    [Pizza_Zutaten].[PizzaID] AS [PizzaID]
+    FROM [dbo].[Pizza_Zutaten] AS [Pizza_Zutaten]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

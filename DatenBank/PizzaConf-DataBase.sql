@@ -1,12 +1,22 @@
-if DB_ID('DbPizzaconf') is NOT null 
-DROP DATABASE DbPizzaconf
-CREATE DATABASE DbPizzaconf
+if DB_ID('DbPizzaconfig') is NOT null 
+DROP DATABASE DbPizzaconfig
+CREATE DATABASE DbPizzaconfig
 GO
 
 
-USE DbPizzaconf
+USE DbPizzaconfig
 GO
 
+IF OBJECT_ID('Rechnung') IS NOT NULL
+DROP TABLE Rechnung 
+CREATE TABLE Rechnung
+(
+ RechnungID INT NOT NULL IDENTITY(1,1),
+ Summe MONEY ,
+ PRIMARY KEY (RechnungID)
+
+)
+GO
 
 IF OBJECT_ID('Pizza') IS not NULL 
 DROP TABLE Pizza 
@@ -14,7 +24,6 @@ CREATE TABLE Pizza
 (
 PizzaID INT NOT NULL IDENTITY(1,1) ,
 RechnungID INT ,
-ZutatenID INT ,
 Groﬂe FLOAT NOT NULL ,
 Beschreibung VARCHAR(2000) NOT NULL ,
 MENGE INT NOT NULL ,
@@ -29,14 +38,17 @@ CREATE TABLE Zutaten
 (
  ZutatenID INT NOT NULL IDENTITY(1,1),
  PizzaID INT ,
- ZutatenArtID INT,
  Sort VARCHAR(50) NOT NULL ,
  Menge INT ,
- Preis MONEY ,
  PRIMARY KEY (ZutatenID),
- FOREIGN KEY (PizzaID) REFERENCES Pizza(PizzaID),
- FOREIGN KEY (ZutatenArtID) REFERENCES ZutatenArt(ZutatenArtID)
+
 )
+INSERT INTO Zutaten ( Sort ) VALUES
+('Dunkel'),
+('Weis'),
+('Tomatensoﬂe' ) ,
+('Barbecuesoﬂe' ) ,
+('CrÈme Fraiche' ) 
 GO
 
 
@@ -47,49 +59,29 @@ CREATE TABLE Pizza_Zutaten
  ZutatenID INT NOT NULL ,
  PizzaID INT NOT NULL ,
  FOREIGN KEY (ZutatenID) REFERENCES Zutaten(ZutatenID),
- FOREIGN KEY (PizzaID) REFERENCES Pizza(PizzaID)
-)
-GO
-
-IF OBJECT_ID('ZutatenArt') IS NOT NULL
-DROP TABLE ZutatenArt 
-CREATE TABLE ZutatenArt
-(
- ZutatenArtID INT NOT NULL IDENTITY(1,1),
- ART VARCHAR(50) NOT NULL ,
- PRIMARY KEY (ZutatenArtID),
+ FOREIGN KEY (PizzaID) REFERENCES Pizza(PizzaID) 
 )
 GO
 
 
 
 
-IF OBJECT_ID('Rechnung') IS NOT NULL
-DROP TABLE Rechnung 
-CREATE TABLE Rechnung
-(
- RechnungID INT NOT NULL IDENTITY(1,1),
- Preis MONEY ,
- PRIMARY KEY (RechnungID)
-
-)
-GO
 
 IF OBJECT_ID('Teig') IS NOT NULL
 DROP TABLE Teig 
 CREATE TABLE Teig
 (
- Sort VARCHAR(50) NOT NULL ,
- ZutatenArtID INT,
+ Sort VARCHAR(50) NOT NULL , 
+ ZutatenID INT IDENTITY(1 , 1)  ,
  Preis MONEY ,
- PRIMARY KEY (Sort),
- FOREIGN KEY (ZutatenArtID) REFERENCES ZutatenArt(ZutatenArtID)
+ PRIMARY KEY (ZutatenID),
+ FOREIGN KEY (ZutatenID) REFERENCES Zutaten(ZutatenID) 
 
 )
 
-INSERT INTO Teig ( Sort , Preis) VALUES
-('Dunkel' , 0.50) ,
-('Weizen' , 0.40) 
+INSERT INTO Teig ( Sort , ZutatenID  , Preis) VALUES
+('Weis' , 0.30),
+('Dunkel', 0.40)
 GO
 
 IF OBJECT_ID('Pizzasoﬂe') IS NOT NULL
@@ -97,10 +89,10 @@ DROP TABLE Pizzasoﬂe
 CREATE TABLE Pizzasoﬂe
 (
  Sort VARCHAR(50) NOT NULL ,
- ZutatenArtID INT,
+ ZutatenID INT ,
  Preis MONEY ,
  PRIMARY KEY (Sort),
- FOREIGN KEY (ZutatenArtID) REFERENCES ZutatenArt(ZutatenArtID)
+ FOREIGN KEY (ZutatenID) REFERENCES zutaten(ZutatenID)
 
 )
 
@@ -115,10 +107,10 @@ DROP TABLE Fleisch
 CREATE TABLE Fleisch
 (
  Sort VARCHAR(50) NOT NULL ,
-  ZutatenArtID INT,
+ ZutatenID INT,
  Preis MONEY ,
  PRIMARY KEY (Sort),
- FOREIGN KEY (ZutatenArtID) REFERENCES ZutatenArt(ZutatenArtID)
+ FOREIGN KEY (ZutatenID) REFERENCES Zutaten(ZutatenID)
 
 )
 
@@ -134,11 +126,10 @@ DROP TABLE Vegetarische
 CREATE TABLE Vegetarische
 (
  Sort VARCHAR(50) NOT NULL ,
- ZutatenArtID INT,
-
+ ZutatenID INT,
  Preis MONEY ,
  PRIMARY KEY (Sort),
-  FOREIGN KEY (ZutatenArtID) REFERENCES ZutatenArt(ZutatenArtID)
+ FOREIGN KEY (ZutatenID) REFERENCES Zutaten(ZutatenID)
 
 )
 INSERT INTO Vegetarische ( Sort , Preis) VALUES
@@ -156,18 +147,18 @@ DROP TABLE Fisch
 CREATE TABLE Fisch 
 (
  Sort VARCHAR(50) NOT NULL ,
- ZutatenArtID INT,
+ ZutatenID INT,
  Preis MONEY ,
  PRIMARY KEY (Sort),
- FOREIGN KEY (ZutatenArtID) REFERENCES ZutatenArt(ZutatenArtID)
+ FOREIGN KEY (ZutatenID) REFERENCES Zutaten(ZutatenID) 
 
 )
 go
-INSERT INTO Fisch (Sort, Preis) VALUES
+INSERT INTO Fisch (Sort, ZutatenID	, Preis) VALUES
 ('Thunfisch', 0.40) ,
 ('Sardellen', 0.20) 
 GO
 
-select * from Pizza_Zutaten
+select * from Zutaten
 
 
