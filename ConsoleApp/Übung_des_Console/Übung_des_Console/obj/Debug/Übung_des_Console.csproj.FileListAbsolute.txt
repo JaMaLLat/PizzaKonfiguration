@@ -1,0 +1,7 @@
+C:\Schule\Klassen Projekt1\ConsoleApp\Übung_des_Console\Übung_des_Console\bin\Debug\Übung_des_Console.exe.config
+C:\Schule\Klassen Projekt1\ConsoleApp\Übung_des_Console\Übung_des_Console\bin\Debug\Übung_des_Console.exe
+C:\Schule\Klassen Projekt1\ConsoleApp\Übung_des_Console\Übung_des_Console\bin\Debug\Übung_des_Console.pdb
+C:\Schule\Klassen Projekt1\ConsoleApp\Übung_des_Console\Übung_des_Console\obj\Debug\Übung_des_Console.csproj.AssemblyReference.cache
+C:\Schule\Klassen Projekt1\ConsoleApp\Übung_des_Console\Übung_des_Console\obj\Debug\Übung_des_Console.csproj.CoreCompileInputs.cache
+C:\Schule\Klassen Projekt1\ConsoleApp\Übung_des_Console\Übung_des_Console\obj\Debug\Übung_des_Console.exe
+C:\Schule\Klassen Projekt1\ConsoleApp\Übung_des_Console\Übung_des_Console\obj\Debug\Übung_des_Console.pdb
