@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aspose.Cells;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,8 +32,13 @@ namespace Übung_des_Console
             }
 
 
-                //}
-                Console.Read();
+            //}
+
+            datei_verwalten _Verwalten = new datei_verwalten();
+            _Verwalten.zellerstellen();
+
+
+            Console.Read();
           
         }
     }
