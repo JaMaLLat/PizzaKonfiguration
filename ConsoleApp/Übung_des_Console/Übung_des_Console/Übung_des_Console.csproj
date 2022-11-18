@@ -47,9 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="datei-verwalten.cs" />
+    <Compile Include="listeZutetan.cs" />
     <Compile Include="Pizza.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rechnung.cs" />
+    <Compile Include="Zutaten.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

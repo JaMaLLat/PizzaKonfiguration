@@ -1,2 +1,2 @@
-pizzaID pizzaname Price
-1 Salami 17,25
+﻿pizzaID ;pizzaname ;Größe ;Price
+1 ; Salami ; 24,5 ;17,25

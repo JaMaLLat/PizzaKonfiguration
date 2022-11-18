@@ -12,7 +12,7 @@ namespace Übung_des_Console
     {
         //instalieren Nuget Aspose.Cells
 
-        Pizza pi = new Pizza(1 , "Margerita" , 16.50m);
+        Rechnung re = new Rechnung(1 , 15.5m);
        public void zellerstellen()
         {
 
@@ -20,27 +20,25 @@ namespace Übung_des_Console
 
             Worksheet zell = ab.Worksheets[0];
 
-            Cell ce1 = zell.Cells["A1"];           
-            Cell cel2 = zell.Cells["B1"];
-            Cell cel3 = zell.Cells["C1"];
+            Cell ce1 = zell.Cells["A1"];            
+            Cell cel2 = zell.Cells["B1"];            
 
-            ce1.PutValue("PizzaID");
-            cel2.PutValue("Pizzaname");
-            cel3.PutValue("price");
+            ce1.PutValue("PizzaID");           
+            cel2.PutValue(";price");
 
 
             Cell row1 = zell.Cells["A2"];
             Cell r2 = zell.Cells["B2"];
-            Cell r3 = zell.Cells["C2"];
 
-            row1.PutValue(pi.PizzaId);
-            r2.PutValue(pi.Pizzaname);
-            r3.PutValue(pi.Price);
+
+            row1.PutValue($"{re.RechnungID}");
+            r2.PutValue($";{re.Summe}");
+
 
 
 
             StreamProviderOptions stream = new StreamProviderOptions();           
-            ab.Save("pizzadaten.csv");
+            ab.Save("pizzadaten.csv"); // findet man in @:C:\Schule\Klassen Projekt1\ConsoleApp\Übung_des_Console\Übung_des_Console\bin\Debug
 
             string datei = @"C:\Schule\Klassen Projekt1\ConsoleApp\Übung_des_Console\Übung_des_Console\bin\Debug\pizzadaten.csv";
 

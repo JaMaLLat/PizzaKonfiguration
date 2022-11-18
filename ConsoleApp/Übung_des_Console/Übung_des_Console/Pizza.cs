@@ -11,16 +11,18 @@ namespace Übung_des_Console
     {
         public int PizzaId;
         public string Pizzaname;
+        public double Große;
         public decimal Price;
-        
 
-        public Pizza( int pizzaid , string pizzaname , decimal price)
+        public Pizza( int pizzaid , string pizzaname , double große  , decimal price)
         {
             PizzaId = pizzaid;
             Pizzaname = pizzaname;
+            Große = große;
             Price = price;
         }
-        
+
+                
     }
     
 }
