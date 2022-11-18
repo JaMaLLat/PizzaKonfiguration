@@ -51,7 +51,28 @@ INSERT INTO Zutaten (ZutatenID , Sort ,Menge ) VALUES
 (1 , 'Käse' , 3 )
 
 GO
+IF OBJECT_ID('Liefer') IS NOT NULL
+DROP TABLE Liefer 
+CREATE TABLE Liefer
+(
+ LieferID INT NOT NULL IDENTITY(1,1),
+ LieferName VARCHAR(100) ,
+ PRIMARY KEY (LieferID)
+)
 
+INSERT INTO Liefer (LieferName) VALUES
+( 'Jamal' )
+GO
+
+IF OBJECT_ID('Liefer_Pizza') IS NOT NULL
+DROP TABLE Liefer_Pizza 
+CREATE TABLE Liefer_Pizza
+(
+ LieferID INT  NOT NULL  ,
+ PizzaID INT NOT NULL ,
+ FOREIGN KEY (LieferID) REFERENCES Liefer(LieferID),
+ FOREIGN KEY (PizzaID) REFERENCES Pizza(PizzaID) 
+)
 
 --IF OBJECT_ID('Pizza_Zutaten') IS NOT NULL
 --DROP TABLE Pizza_Zutaten 
@@ -160,6 +181,5 @@ GO
 --('Sardellen', 0.20) 
 --GO
 
-select * from Zutaten
 
 
