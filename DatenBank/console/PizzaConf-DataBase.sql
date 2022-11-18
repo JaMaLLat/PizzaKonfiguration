@@ -16,6 +16,8 @@ CREATE TABLE Rechnung
  PRIMARY KEY (RechnungID)
 
 )
+INSERT INTO Rechnung ( RechnungID ,   Summe ) VALUES
+(1 ,  17.25 )
 GO
 
 IF OBJECT_ID('Pizza') IS not NULL 
@@ -25,11 +27,13 @@ CREATE TABLE Pizza
 PizzaID INT NOT NULL IDENTITY(1,1) ,
 RechnungID INT ,
 Groﬂe FLOAT NOT NULL ,
-Beschreibung VARCHAR(2000) NOT NULL ,
-MENGE INT NOT NULL ,
+Price DECIMAL not null
 PRIMARY KEY (PizzaID),
 FOREIGN KEY (RechnungID) REFERENCES Rechnung(RechnungID),
 )
+INSERT INTO Pizza ( PizzaID ,  Groﬂe , Price  ) VALUES
+(1 , 'salami' , 24,45 , 17.25 )
+GO
 
 GO
 IF OBJECT_ID('Zutaten') IS NOT NULL
@@ -43,12 +47,9 @@ CREATE TABLE Zutaten
  PRIMARY KEY (ZutatenID),
 
 )
-INSERT INTO Zutaten ( Sort ) VALUES
-('Dunkel'),
-('Weis'),
-('Tomatensoﬂe' ) ,
-('Barbecuesoﬂe' ) ,
-('CrÈme Fraiche' ) 
+INSERT INTO Zutaten (ZutatenID , Sort ,Menge ) VALUES
+(1 , 'K‰se' , 3 )
+
 GO
 
 
