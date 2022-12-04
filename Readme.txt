@@ -1,2 +1,2 @@
 Das Programm ermöglicht es eine Pizza nach eigenen Wünschen zusammenzustellen und berechnet einen Preis.
-Pizza auf dein Geschmack erstellen . Pizza Große ,Vegetarische Zutaten ,Fleisch Zutaten und Fisch Zutaten sind aus dein Wahl
+Pizza auf dein Geschmack erstellen . Pizza Große ,Vegetarische Zutaten ,Fleisch Zutaten und Fisch Zutaten sind aus dein Wahl...
